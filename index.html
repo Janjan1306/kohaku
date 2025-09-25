@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kohaku</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+  </head>
+<body>
+    <div class="image" id="title">
+        <h1>by Tung</h1>
+    </div>
+    <div class="scene1" >
+        <div class="scene1" id="bottom-plant"><img src="pic/IMG_1217.PNG" alt="">        </div>
+        <div class="scene1" id="leaves"><img src="pic/IMG_1221.GIF" alt=""></div>
+        <div class="scene1" id="top-plant"><img src="pic/IMG_1216.PNG" alt=""></div>
+        <div class="scene1" id="box"><img src="pic/Untitled_Artwork.png" alt=""></div>
+        <div class="scene1" id="eyes-close"><img src="pic/IMG_1219.PNG" alt=""></div>
+        <div class="scene1" id="eyes-open"><img src="pic/IMG_1220.PNG" alt=""></div>
+        <p class="text reveal" id="text1">Không còn phải la giận
+        <br>hông còn là thân cận
+        <br>Nếu người đã quyết tâm
+        <br>Cứ xa rời tôi</p>
+    </div>
+    <div class="scene2" >
+        <div class="scene2" id="human-yellow"><img src="pic/IMG_1223.PNG" alt=""></div>
+        <div class="scene2" id="human-grey"><img src="pic/IMG_1222.PNG" alt="">        </div>
+        <p class="text reveal" id="text2">Vỡ bài học trong đời
+        <br>Yêu là không mong đợi
+        <br>Không mời vẫn tới chơi
+        <br>Nếu đi không cần nói</p>
+    </div>
+        <div class="scene3" >
+        <div class="scene3" id="hand-left"><img src="pic/IMG_1225.PNG" alt=""></div>
+        <div class="scene3" id="hand-right"><img src="pic/IMG_1224.PNG" alt="">        </div>
+        <p class="text reveal" id="text3">Dù em không muốn hay buông tay
+        <br>Thì cũng đã đến đây trong đời
+        <br>Tuổi xuân đã mất
+        <br>Thay tiếc nuối một thời</p>
+    </div>
+    <div class="scene4" >
+        <div class="scene4" id="bird-fly"><img src="pic/IMG_1227.PNG" alt=""></div>
+        <div class="scene4" id="rain"><img src="pic/IMG_1209.PNG" alt="">        </div>
+        <p class="text reveal" id="text4-1">Những gì đã mất được
+        <br>Ta đã dám đánh cược</p>
+        <p class="text reveal" id="text4-2">Để được đến với nhau
+        <br>Để sau rời đi</p>
+        <p class="text reveal" id="text4-3">Ngày vui sẽ đến chơi sớm thôi
+        <br>Và em chẳng nhớ tôi sau này</p>
+        <p class="text reveal" id="text4-4">Thì xin mỗi phút giây
+        <br>Có tôi một ngày</p>
+
+    </div>
+    <div class="bird-fall-container">
+    <div id="bird-fall"><img src="pic/IMG_1226.PNG" alt=""></div>
+    </div>
+
+    <div class="scene5" >
+        <div class="scene5" id="amber"><img src="pic/IMG_1230.PNG" alt=""></div>
+        <div class="scene5" id="amber-yellow"><img src="pic/IMG_1229.PNG" alt=""></div>
+        <p class="text reveal" id="text5-1">Tuổi xuân đã mất</p>
+        <p class="text reveal" id="text5-2">Thay tiếc nuối một thời</p>
+    </div>
+    <div class="scene6" >
+        <div class="scene6" ><img src="pic/the end.png" alt=""></div>
+
+    </div>!
+<script>
+document.getElementById('human-grey').addEventListener('click', function() {
+    document.getElementById('human-yellow').classList.add('fade-out');
+  });
+const handLeft = document.getElementById('hand-left');
+const handRight = document.getElementById('hand-right');
+let handsAnimated = false;
+
+const observer = new IntersectionObserver((entries, observer) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting && !handsAnimated) {
+      handLeft.classList.add('animate-hand-left');
+      handRight.classList.add('animate-hand-right');
+      handsAnimated = true;
+      observer.disconnect(); // Stop observing after animation starts
+    }
+  });
+}, { threshold: 0.5 }); // Adjust threshold as needed
+
+observer.observe(handLeft);
+observer.observe(handRight);
+
+document.querySelectorAll('.text').forEach(function(el) {
+  const observer = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.2 }); // Adjust threshold as needed
+  observer.observe(el);
+});
+</script>
+</body>
+</html>
